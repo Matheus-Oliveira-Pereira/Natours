@@ -1,0 +1,53 @@
+.header {
+  height: 95vh; /*basicamente dis que a box header, vai ter de comprimento 95% da janela de vizualização*/
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-ligth, 0.8),
+      rgba($color-primary-dark, 0.8) /* o 0.8 fica responsavel pela opacidade*/
+    ),
+    url("../img/hero-small.jpg");
+  /* aqui colocamos dois backgrounds, liner gradient e uma image, o que voce quer por cima tem que vir primeiro */
+  /* para especificar  a direção do gradient adicione um to "posição"*/
+  background-size: cover; /*cover faz com que independente do vh a imagem sempre tentara colocar a imagem dentro da caixa*/
+  background-position: top; /*garante que independente do vh o topo da imagem sempre apareça*/
+
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  position: relative; //faz que a box se torne uma referencia para uma possivel postion:absolute
+
+  /* & basicamente copia o nome do seletor, no caso .header*/
+
+  @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-ligth, 0.8),
+        rgba($color-primary-dark, 0.8)
+          /* o 0.8 fica responsavel pela opacidade*/
+      ),
+      url("../img/hero.jpg");
+  }
+
+  @include respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+
+  &__logobox {
+    position: absolute; // position absolute faz que fixe fixo no position relative
+    top: 4rem; //ditancia que vai ficar de cima pra baixo
+    left: 4rem; //distancia que vai ficar da esquerda para direita
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
